@@ -6,7 +6,8 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<svg id="svg" width="3000px" height="500px"></svg>
+		<svg id="svg" width="3000px" height="200px"></svg>
+		<svg id="svgimg" width="3000px" height="50px"></svg>
 		<svg id="svg2" width="3000px" height="200px"></svg>
 		<!-- <svg id="#stats" width="500px" height="500px"></svg> -->
 		<script src="https://d3js.org/d3.v7.min.js"></script>
@@ -64,6 +65,7 @@
 
 				const svg = d3.select('#svg');
 				const svg2 = d3.select('#svg2');
+				const svgimg = d3.select('#svgimg');
 				const barGroup = svg.append('g');
 				const barGroup2 = svg2.append('g');
 
@@ -121,6 +123,17 @@
 					.attr('fill', (d) => `${d.element}`)
 					// .attr('stroke', (d) => 'black')
 					.attr('rx', (d) => '8');
+
+				svgimg
+					.selectAll('image')
+					.data(data)
+					.enter()
+					.append('image')
+					.attr('class', 'image')
+					.attr('x', (d) => xscale(d.name) - margin.right - 4)
+					.attr('width', (d) => '50px')
+					.attr('height', (d) => '50px')
+					.attr('href', (d) => `${d.photo}`);
 			}
 
 			// ----------
